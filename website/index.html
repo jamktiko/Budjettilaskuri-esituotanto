@@ -33,5 +33,49 @@
         </div>
       </main>
     </div>
+    <div class="info-card">
+      <h3>Backend Test</h3>
+      <button id="test-button" style="padding: 10px; cursor: pointer">
+        Testaa yhteys
+      </button>
+      <p id="status-message">Status: Odottaa...</p>
+      <div
+        id="response-data"
+        style="font-size: 0.8em; margin-top: 10px; color: #666"
+      ></div>
+    </div>
+    <script>
+      const testButton = document.getElementById('test-button');
+      const statusMsg = document.getElementById('status-message');
+      const responseData = document.getElementById('response-data');
+
+      // KORVAA TÄMÄ omalla Beanstalk-osoitteellasi (esim. http://myapp.eu-central-1.elasticbeanstalk.com/api/test)
+      const BACKEND_URL =
+        'http://testi-env-2.eba-n5qzi6jr.eu-central-1.elasticbeanstalk.com/test-db';
+
+      testButton.addEventListener('click', async () => {
+        statusMsg.textContent = 'Status: Ladataan...';
+        statusMsg.style.color = 'orange';
+
+        try {
+          const response = await fetch(BACKEND_URL);
+
+          if (response.ok) {
+            const data = await response.json();
+            statusMsg.textContent = 'Status: Yhteys toimii! ✅';
+            statusMsg.style.color = 'green';
+            responseData.textContent =
+              'Backend vastaus: ' + JSON.stringify(data);
+          } else {
+            throw new Error('Palvelin vastasi virheellä: ' + response.status);
+          }
+        } catch (error) {
+          statusMsg.textContent = 'Status: Virhe yhteydessä ❌';
+          statusMsg.style.color = 'red';
+          responseData.textContent = error.message;
+          console.error('Yhteysvirhe:', error);
+        }
+      });
+    </script>
   </body>
 </html>
