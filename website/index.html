@@ -50,8 +50,7 @@
       const responseData = document.getElementById('response-data');
 
       // KORVAA TÄMÄ omalla Beanstalk-osoitteellasi (esim. http://myapp.eu-central-1.elasticbeanstalk.com/api/test)
-      const BACKEND_URL =
-        'http://testi-env-2.eba-n5qzi6jr.eu-central-1.elasticbeanstalk.com/test-db';
+      const BACKEND_URL = '/api/test-db'; // Ei enää http://-alkua!
 
       testButton.addEventListener('click', async () => {
         statusMsg.textContent = 'Status: Ladataan...';
