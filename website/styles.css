@@ -1,3 +1,4 @@
+/*
 :root {
     --primary-orange: #ff9900;
     --dark-bg: #0f172a;
@@ -38,6 +39,7 @@ body {
 }
 
 /* Taustan hohde-efekti */
+/*
 .glow-effect {
     position: absolute;
     top: -50px;
@@ -137,3 +139,4 @@ footer {
 #timestamp {
     color: var(--text-main);
 }
+*/
